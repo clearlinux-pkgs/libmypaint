@@ -4,14 +4,13 @@
 #
 Name     : libmypaint
 Version  : 1.6.1
-Release  : 10
+Release  : 11
 URL      : https://github.com/mypaint/libmypaint/releases/download/v1.6.1/libmypaint-1.6.1.tar.xz
 Source0  : https://github.com/mypaint/libmypaint/releases/download/v1.6.1/libmypaint-1.6.1.tar.xz
 Summary  : MyPaint's brushstroke rendering library (@LIBMYPAINT_VERSION_FULL@)
 Group    : Development/Tools
 License  : HPND
 Requires: libmypaint-data = %{version}-%{release}
-Requires: libmypaint-filemap = %{version}-%{release}
 Requires: libmypaint-lib = %{version}-%{release}
 Requires: libmypaint-license = %{version}-%{release}
 Requires: libmypaint-locales = %{version}-%{release}
@@ -50,20 +49,11 @@ Requires: libmypaint = %{version}-%{release}
 dev components for the libmypaint package.
 
 
-%package filemap
-Summary: filemap components for the libmypaint package.
-Group: Default
-
-%description filemap
-filemap components for the libmypaint package.
-
-
 %package lib
 Summary: lib components for the libmypaint package.
 Group: Libraries
 Requires: libmypaint-data = %{version}-%{release}
 Requires: libmypaint-license = %{version}-%{release}
-Requires: libmypaint-filemap = %{version}-%{release}
 
 %description lib
 lib components for the libmypaint package.
@@ -97,15 +87,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1644259162
+export SOURCE_DATE_EPOCH=1656047503
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mno-vzeroupper -mprefer-vector-width=256 "
-export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mno-vzeroupper -mprefer-vector-width=256 "
-export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mno-vzeroupper -mprefer-vector-width=256 "
-export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mno-vzeroupper -mprefer-vector-width=256 "
+export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mprefer-vector-width=256 "
+export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mprefer-vector-width=256 "
+export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mprefer-vector-width=256 "
+export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mprefer-vector-width=256 "
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -129,7 +119,7 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1644259162
+export SOURCE_DATE_EPOCH=1656047503
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libmypaint
 cp %{_builddir}/libmypaint-1.6.1/COPYING %{buildroot}/usr/share/package-licenses/libmypaint/36b0708d2704b69ce4150e59f8b5173186cc38c7
@@ -138,7 +128,7 @@ pushd ../buildavx2/
 popd
 %make_install
 %find_lang libmypaint
-/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
@@ -171,15 +161,13 @@ popd
 /usr/lib64/libmypaint.so
 /usr/lib64/pkgconfig/libmypaint.pc
 
-%files filemap
-%defattr(-,root,root,-)
-/usr/share/clear/filemap/filemap-libmypaint
-
 %files lib
 %defattr(-,root,root,-)
+/usr/lib64/glibc-hwcaps/x86-64-v3/libmypaint.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libmypaint.so.0
+/usr/lib64/glibc-hwcaps/x86-64-v3/libmypaint.so.0.0.0
 /usr/lib64/libmypaint.so.0
 /usr/lib64/libmypaint.so.0.0.0
-/usr/share/clear/optimized-elf/lib*
 
 %files license
 %defattr(0644,root,root,0755)
