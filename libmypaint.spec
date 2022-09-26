@@ -4,7 +4,7 @@
 #
 Name     : libmypaint
 Version  : 1.6.1
-Release  : 15
+Release  : 16
 URL      : https://github.com/mypaint/libmypaint/releases/download/v1.6.1/libmypaint-1.6.1.tar.xz
 Source0  : https://github.com/mypaint/libmypaint/releases/download/v1.6.1/libmypaint-1.6.1.tar.xz
 Summary  : MyPaint's brushstroke rendering library (@LIBMYPAINT_VERSION_FULL@)
