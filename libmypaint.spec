@@ -4,7 +4,7 @@
 #
 Name     : libmypaint
 Version  : 1.6.1
-Release  : 16
+Release  : 17
 URL      : https://github.com/mypaint/libmypaint/releases/download/v1.6.1/libmypaint-1.6.1.tar.xz
 Source0  : https://github.com/mypaint/libmypaint/releases/download/v1.6.1/libmypaint-1.6.1.tar.xz
 Summary  : MyPaint's brushstroke rendering library (@LIBMYPAINT_VERSION_FULL@)
@@ -87,7 +87,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1656131325
+export SOURCE_DATE_EPOCH=1665098906
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -119,10 +119,10 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1656131325
+export SOURCE_DATE_EPOCH=1665098906
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libmypaint
-cp %{_builddir}/libmypaint-1.6.1/COPYING %{buildroot}/usr/share/package-licenses/libmypaint/36b0708d2704b69ce4150e59f8b5173186cc38c7
+cp %{_builddir}/libmypaint-%{version}/COPYING %{buildroot}/usr/share/package-licenses/libmypaint/36b0708d2704b69ce4150e59f8b5173186cc38c7
 pushd ../buildavx2/
 %make_install_v3
 popd
@@ -158,12 +158,12 @@ popd
 /usr/include/libmypaint/mypaint-surface.h
 /usr/include/libmypaint/mypaint-symmetry.h
 /usr/include/libmypaint/mypaint-tiled-surface.h
+/usr/lib64/glibc-hwcaps/x86-64-v3/libmypaint.so
 /usr/lib64/libmypaint.so
 /usr/lib64/pkgconfig/libmypaint.pc
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/glibc-hwcaps/x86-64-v3/libmypaint.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libmypaint.so.0
 /usr/lib64/glibc-hwcaps/x86-64-v3/libmypaint.so.0.0.0
 /usr/lib64/libmypaint.so.0
