@@ -5,7 +5,7 @@
 #
 Name     : libmypaint
 Version  : 1.6.1
-Release  : 19
+Release  : 20
 URL      : https://github.com/mypaint/libmypaint/releases/download/v1.6.1/libmypaint-1.6.1.tar.xz
 Source0  : https://github.com/mypaint/libmypaint/releases/download/v1.6.1/libmypaint-1.6.1.tar.xz
 Summary  : MyPaint's brushstroke rendering library (@LIBMYPAINT_VERSION_FULL@)
@@ -92,7 +92,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1683045878
+export SOURCE_DATE_EPOCH=1685639182
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -124,7 +124,7 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1683045878
+export SOURCE_DATE_EPOCH=1685639182
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libmypaint
 cp %{_builddir}/libmypaint-%{version}/COPYING %{buildroot}/usr/share/package-licenses/libmypaint/36b0708d2704b69ce4150e59f8b5173186cc38c7 || :
@@ -145,7 +145,6 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
-/V3/usr/lib64/libmypaint.so
 /usr/include/libmypaint/fastapprox/cast.h
 /usr/include/libmypaint/fastapprox/fastexp.h
 /usr/include/libmypaint/fastapprox/fastlog.h
@@ -169,7 +168,6 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libmypaint.so.0
 /V3/usr/lib64/libmypaint.so.0.0.0
 /usr/lib64/libmypaint.so.0
 /usr/lib64/libmypaint.so.0.0.0
